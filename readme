@@ -1,0 +1,13 @@
+1、分布式文件系统
+（1）客户端基于fuse；
+（2）meta和data都是基于kv数据库；
+（3）kv数据库基于dobj对象（distribute object），单个dobj对象默认16M，只能追加写；
+（3）dobject对象采用raft协议（三副本/ec）写入lobj（local object）对象中，lobj落入单盘。
+2、组件
+（1）client：基于fuse的客户端；
+（2）manager：负责创、删、查、改fs，告警等；
+（3）monitor：负责系统状态及故障处理；
+（4）metanode:负责元数据处理；
+（5）datanode：负责数据处理；
+（6）osd：负责单盘处理；
+3、采用golang实现；
